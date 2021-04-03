@@ -8,13 +8,13 @@ import (
 
 const portNum = ":8080"
 
-// Home - / main route request handler
-func Home(rw http.ResponseWriter, r *http.Request) {
+// HomeEx - / main route request handler
+func HomeEx(rw http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(rw, "Here we are on the Home Page")
 }
 
-// About - /about route request handler
-func About(rw http.ResponseWriter, r *http.Request) {
+// AboutEx - /about route request handler
+func AboutEx(rw http.ResponseWriter, r *http.Request) {
 	value := addValues(2, 2)
 	_, _ = fmt.Fprintf(rw, fmt.Sprintf("here is the about page, and 2 + 2 is %d", value))
 }
@@ -23,8 +23,8 @@ func addValues(x, y int) int {
 	return x + y
 }
 
-// Divide - /didivide request handler
-func Divide(rw http.ResponseWriter, r *http.Request) {
+// DivideEx - /didivide request handler
+func DivideEx(rw http.ResponseWriter, r *http.Request) {
 	var x, y float32
 	x, y = 10.5, -0.008
 	value, err := divide(x, y)
@@ -44,9 +44,9 @@ func divide(x, y float32) (float32, error) {
 }
 
 func main() {
-	http.HandleFunc("/", Home)
-	http.HandleFunc("/about", About)
-	http.HandleFunc("/divide", Divide)
+	http.HandleFunc("/ex", HomeEx)
+	http.HandleFunc("/aboutex", AboutEx)
+	http.HandleFunc("/divideex", DivideEx)
 
 	fmt.Println(fmt.Sprintf("Server listening on port %s....", portNum))
 	_ = http.ListenAndServe(portNum, nil)
